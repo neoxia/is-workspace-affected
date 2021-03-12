@@ -13,27 +13,38 @@ const yarn = require('./yarn');
       base:        core.getInput('base', { required: true }),
     };
 
-    // Load yarn project
+    // Load project
+    const git = simpleGit({ baseDir: inputs.projectRoot });
     const project = await yarn.getProject(inputs.projectRoot);
+
+    // Get workspace
     const workspace = project.workspaces.find(wks => wks.manifest.name.name === inputs.workspace);
 
     if (!workspace) {
       return core.setFailed(`Workspace ${inputs.workspace} not found.`);
     }
 
+    // Fetch base
+    await core.group('git fetch', async () => {
+      core.info(await git.fetch('origin', inputs.base, ['--progress', '--depth=1']));
+    });
+
     // Compute diff
-    const git = simpleGit({ baseDir: inputs.projectRoot });
-    const diff = await git.diff(['--name-only', inputs.base, '--', fslib.npath.fromPortablePath(workspace.cwd)]);
+    const diff = await core.group('git diff', async () => {
+      const res = await git.diff(['--name-only', `origin/${inputs.base}`, '--', fslib.npath.fromPortablePath(workspace.cwd)]);
+      core.info(res);
+
+      return res;
+    });
+
     const lines = diff.split('\n').filter(l => l);
     core.info(`Workspace ${inputs.workspace} ${lines.length > 0 ? 'affected' : 'not affected'}`)
-    core.startGroup(`git diff --name-only ${inputs.base} -- ${fslib.npath.fromPortablePath(workspace.cwd)}`);
-    core.info(diff);
-    core.endGroup();
 
     if (lines.length > 0) {
       core.setOutput('affected', true);
+      core.info(`Workspace ${inputs.workspace} affected`);
     } else {
-      // core.setOutput('affected', '');
+      core.info(`Workspace ${inputs.workspace} not affected`);
     }
 
   } catch (error) {
