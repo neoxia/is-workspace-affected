@@ -33,7 +33,7 @@ const yarn = require('./yarn');
     if (lines.length > 0) {
       core.setOutput('affected', true);
     } else {
-      core.setOutput('affected', false);
+      // core.setOutput('affected', '');
     }
 
   } catch (error) {
