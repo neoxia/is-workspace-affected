@@ -11,6 +11,14 @@ inputs:
     description: 'Yarn workspace to check'
     required: true
 
+  base:
+    description: 'Base to compute diff'
+    required: true
+
+outputs:
+  affected:
+    description: 'true if workspace is affected'
+
 runs:
   using: node12
-  main: index.js
+  main: 'src/index.js'

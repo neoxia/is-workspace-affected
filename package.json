@@ -1,6 +1,9 @@
 {
   "name": "is-workspace-affected",
   "version": "1.0.0",
+  "engines": {
+    "node": "^12.0.0"
+  },
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@yarnpkg/cli": "^2.4.1",
