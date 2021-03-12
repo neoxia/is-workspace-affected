@@ -8,9 +8,9 @@ const yarn = require('./yarn');
   try {
     // Load inputs
     const inputs = {
-      projectRoot: '../neoxia/nx-live', //core.getInput('project-root') || '.',
-      workspace:   'nx-users', //core.getInput('workspace', { required: true }),
-      base:        'dev', //core.getInput('base', { required: true }),
+      projectRoot: core.getInput('project-root') || '.',
+      workspace:   core.getInput('workspace', { required: true }),
+      base:        core.getInput('base', { required: true }),
     };
 
     // Load yarn project
