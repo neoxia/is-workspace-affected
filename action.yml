@@ -1,0 +1,16 @@
+name: 'is-workspace-affected'
+description: 'Test if a yarn workspace is affected by changes'
+
+inputs:
+  project-root:
+    description: 'Yarn project root'
+    required: false
+    default: '.'
+
+  workspace:
+    description: 'Yarn workspace to check'
+    required: true
+
+runs:
+  using: node12
+  main: index.js
