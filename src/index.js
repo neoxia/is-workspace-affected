@@ -37,10 +37,10 @@ const yarn = require('./yarn');
       return res;
     });
 
-    const lines = diff.split('\n').filter(l => l);
-    core.info(`Workspace ${inputs.workspace} ${lines.length > 0 ? 'affected' : 'not affected'}`)
+    // Test if affected
+    const affected = diff.split('\n').some(l => l !== '');
 
-    if (lines.length > 0) {
+    if (affected) {
       core.setOutput('affected', true);
       core.info(`Workspace ${inputs.workspace} affected`);
     } else {
