@@ -26,14 +26,14 @@ const yarn = require('./yarn');
     const diff = await git.diff(['--name-only', inputs.base, '--', fslib.npath.fromPortablePath(workspace.cwd)]);
     const lines = diff.split('\n').filter(l => l);
     core.info(`Workspace ${inputs.workspace} ${lines.length > 0 ? 'affected' : 'not affected'}`)
-    core.startGroup('git diff:');
+    core.startGroup(`git diff --name-only ${inputs.base} -- ${fslib.npath.fromPortablePath(workspace.cwd)}`);
     core.info(diff);
     core.endGroup();
 
     if (lines.length > 0) {
-      core.setOutput('affected', 'true');
+      core.setOutput('affected', true);
     } else {
-      core.setOutput('affected', 'false');
+      core.setOutput('affected', false);
     }
 
   } catch (error) {
