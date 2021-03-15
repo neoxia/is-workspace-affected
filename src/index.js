@@ -25,13 +25,23 @@ const yarn = require('./yarn');
     }
 
     // Fetch base
-    await core.group('git fetch', async () => {
-      core.info(await git.fetch('origin', inputs.base, ['--progress', '--depth=1']));
+    const result = await core.group('git fetch', async () => {
+      const result = await git.fetch('origin', inputs.base, ['--tags', '--progress', '--depth=1']);
+      core.info(result.raw);
+
+      return result;
     });
 
     // Compute diff
+    const isTag = result.tags.some(tag => tag.name === inputs.base);
+    let baseRef = inputs.base;
+
+    if (!isTag) {
+      baseRef = `origin/${baseRef}`;
+    }
+
     const diff = await core.group('git diff', async () => {
-      const res = await git.diff(['--name-only', `origin/${inputs.base}`, '--', fslib.npath.fromPortablePath(workspace.cwd)]);
+      const res = await git.diff(['--name-only', baseRef, '--', fslib.npath.fromPortablePath(workspace.cwd)]);
       core.info(res);
 
       return res;
