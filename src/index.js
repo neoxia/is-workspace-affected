@@ -25,8 +25,8 @@ const yarn = require('./yarn');
     }
 
     // Fetch tags
-    const fetch = await core.group('git fetch origin --tags', async () => {
-      const result = await git.fetch('origin', ['--tags']);
+    const fetch = await core.group('git fetch --tags', async () => {
+      const result = await git.fetch(['--tags']);
       core.info(result.raw);
 
       return result;
