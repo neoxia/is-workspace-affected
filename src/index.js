@@ -24,16 +24,22 @@ const yarn = require('./yarn');
       return core.setFailed(`Workspace ${inputs.workspace} not found.`);
     }
 
-    // Fetch base
-    const result = await core.group('git fetch', async () => {
-      const result = await git.fetch('origin', inputs.base, ['--tags', '--progress', '--depth=1']);
+    // Fetch tags
+    const fetch = await core.group('git fetch origin --tags', async () => {
+      const result = await git.fetch('origin', ['--tags']);
       core.info(result.raw);
 
       return result;
     });
 
+    // Fetch base
+    await core.group(`git fetch origin ${inputs.base}`, async () => {
+      const result = await git.fetch('origin', inputs.base, ['--progress', '--depth=1']);
+      core.info(result.raw);
+    });
+
     // Compute diff
-    const isTag = result.tags.some(tag => tag.name === inputs.base);
+    const isTag = fetch.tags.some(tag => tag.name === inputs.base);
     let baseRef = inputs.base;
 
     if (!isTag) {
