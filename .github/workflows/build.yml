@@ -10,8 +10,22 @@ on:
       - master
 
 jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+
+      - name: Test
+        run: yarn test
+
   build:
     runs-on: ubuntu-latest
+    needs: [tests]
 
     steps:
       - uses: actions/checkout@v2
@@ -25,7 +39,7 @@ jobs:
 
       - name: Commit built files
         if: github.event_name == 'push'
-        run:  |
+        run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@users.noreply.github.com'
           git add dist
