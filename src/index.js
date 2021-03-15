@@ -25,11 +25,11 @@ const yarn = require('./yarn');
     }
 
     // Fetch tags
-    const fetch = await core.group('git fetch --tags', async () => {
+    const tags = await core.group('git fetch --tags', async () => {
       const result = await git.fetch(['--tags']);
       core.info(result.raw);
 
-      return result;
+      return await git.tags();
     });
 
     // Fetch base
@@ -39,7 +39,7 @@ const yarn = require('./yarn');
     });
 
     // Compute diff
-    const isTag = fetch.tags.some(tag => tag.name === inputs.base);
+    const isTag = tags.all.some(tag => tag === inputs.base);
     let baseRef = inputs.base;
 
     if (!isTag) {
