@@ -20,6 +20,19 @@ jobs:
         with:
           node-version: 12.x
 
+      - name: Setup Cache
+        id: setup-cache
+        run: echo "::set-output name=yarn-cache::$(yarn cache dir)"
+
+      - uses: actions/cache@v2.1.4
+        with:
+          path: ${{ steps.setup-cache.outputs.yarn-cache }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install
+        run: yarn install
+
       - name: Build
         run: yarn build
 
@@ -30,3 +43,10 @@ jobs:
           git config --global user.email 'github-actions@users.noreply.github.com'
           git add dist
           git commit -m "Automatic build" && git push || true
+
+      - name: Archive build artifacts
+        if: github.event_name != 'push'
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: dist
