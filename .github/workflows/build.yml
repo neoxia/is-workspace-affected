@@ -105,6 +105,7 @@ jobs:
         id: affected
         uses: ./
         with:
+          project-root: tests/project
           workspace: test-a
           base: tests
 
