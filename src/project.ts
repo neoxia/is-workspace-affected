@@ -6,9 +6,6 @@ import { Workspace } from './workspace';
 
 // Class
 export class Project extends Workspace {
-  // Attributes
-  private _workspaces?: Workspace[];
-
   // Statics
   static async loadProject(root: string): Promise<Project> {
     return new Project(root, await this.loadPackage(root));
