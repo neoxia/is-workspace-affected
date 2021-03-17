@@ -69,7 +69,7 @@ jobs:
           name: bundle
           path: dist
 
-  test-branch-affected:
+  action-tests:
     runs-on: ubuntu-latest
     needs: [build]
 
@@ -96,9 +96,9 @@ jobs:
           git commit -m 'Modified test-a'
         working-directory: 'tests/project'
 
-      - name: Run action
+      - name: Test is affected
         id: affected
-        uses: .
+        uses: ./
         with:
           workspace: test-a
           base: master
@@ -112,7 +112,7 @@ jobs:
   deploy:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: [test-affected]
+    needs: [action-tests]
 
     steps:
       - uses: actions/checkout@v2
