@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "ncc build src/index.ts -o dist",
-    "build:dev": "ncc build src/index.ts -o dist",
+    "build": "webpack build",
+    "build:dev": "webpack build --mode=developement",
     "test": "jest"
   },
   "dependencies": {
@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
-    "@vercel/ncc": "^0.27.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.3",
     "ts-loader": "^8.0.18",

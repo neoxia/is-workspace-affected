@@ -57,4 +57,4 @@ node_modules/
 
 # Build output
 /dist/*
-!/dist/index.js
+!/dist/bundle.js*
