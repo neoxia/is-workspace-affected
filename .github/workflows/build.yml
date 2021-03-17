@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - uses: actions/setup-node@v2.1.5
         with:
@@ -69,7 +71,7 @@ jobs:
           name: bundle
           path: dist
 
-  action-tests:
+  tests--test-a-affected:
     runs-on: ubuntu-latest
     needs: [build]
 
@@ -82,43 +84,31 @@ jobs:
           name: bundle
           path: dist
 
-      - name: Setup git repository
-        run: |
-          # Setup
-          git config --global init.defaultBranch tests
-          git config --global user.email 'github-actions@users.noreply.github.com'
-          git config --global user.name 'github-actions'
-
-          # Create repository
-          git init
-          git add .
-          git commit -m 'Initial commit'
-
-          # Add a branch
-          git branch test/branch-affected
-          touch test-a/test.txt
-          git add test-a/test.txt
-          git commit -m 'Modified test-a'
-        working-directory: 'tests/project'
+      - name: Checkout test repository
+        uses: actions/checkout@v2
+        with:
+          repository: julien-capellari/test-is-workspace-affected
+          path: test-repo
+          branch: test/test-a-affected
 
       - name: Test is affected
         id: affected
         uses: ./
         with:
-          project-root: tests/project
+          project-root: test-repo
           workspace: test-a
           base: tests
 
       - name: Failed
         if: ${{ !steps.affected.outputs.affected }}
         run: |
-          echo "::error::Test failed: workspace test-a is affected"
+          echo "::error::Test failed: workspace test-a should be affected affected"
           exit 1
 
   deploy:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: [action-tests]
+    needs: [tests--test-a-affected]
 
     steps:
       - uses: actions/checkout@v2
