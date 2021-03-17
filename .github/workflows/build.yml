@@ -131,7 +131,6 @@ jobs:
           exit 1
 
   deploy:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: [action-tests]
 
