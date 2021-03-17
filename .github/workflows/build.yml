@@ -154,6 +154,12 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@users.noreply.github.com'
-          git add dist
-          git commit -m "Automatic build"
-          git push
+
+          if `git diff --quiet --exit-code`
+          then
+            echo "Nothing changed !"
+          else
+            git add dist
+            git commit -m "Automatic build"
+            git push
+          fi
