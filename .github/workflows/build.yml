@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  tests:
+  unit-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -63,17 +63,69 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Commit built files
-        if: github.event_name == 'push'
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: dist
+
+  test-branch-affected:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: bundle
+          path: dist
+
+      - name: Setup git repository
+        run: |
+          # Create repository
+          git init
+          git add .
+          git commit -m 'Initial commit'
+
+          # Add a branch
+          git branch test/branch-affected
+          touch test-a/test.txt
+          git add test-a/test.txt
+          git commit -m 'Modified test-a'
+        working-directory: 'tests/project'
+
+      - name: Run action
+        id: affected
+        uses: .
+        with:
+          workspace: test-a
+          base: master
+
+      - name: Failed
+        if: ${{ !steps.affected.outputs.affected }}
+        run: |
+          echo "::error::Test failed: workspace test-a is affected"
+          exit 1
+
+  deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: [test-affected]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: bundle
+          path: dist
+
+      - name: Commit bundle files
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@users.noreply.github.com'
           git add dist
           git commit -m "Automatic build" && git push || true
-
-      - name: Archive build artifacts
-        if: github.event_name != 'push'
-        uses: actions/upload-artifact@v2
-        with:
-          name: bundle
-          path: dist
