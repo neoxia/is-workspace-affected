@@ -1,4 +1,4 @@
-import core from '@actions/core';
+import * as core from '@actions/core';
 import { npath } from '@yarnpkg/fslib';
 import simpleGit from 'simple-git';
 
