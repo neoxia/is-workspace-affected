@@ -88,6 +88,16 @@ jobs:
             base: master
             affected: false
 
+          - branch: test/tags
+            workspace: test-a
+            base: test-tag
+            affected: true
+
+          - branch: test/tags
+            workspace: test-b
+            base: test-tag
+            affected: false
+
     steps:
       - uses: actions/checkout@v2
 
