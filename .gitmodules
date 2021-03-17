@@ -1,0 +1,3 @@
+[submodule "tests/project"]
+	path = tests/project
+	url = git@github.com:julien-capellari/test-is-workspace-affected.git
