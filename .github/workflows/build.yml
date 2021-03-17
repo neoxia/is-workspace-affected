@@ -135,7 +135,9 @@ jobs:
     needs: [action-tests]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Download build artifacts
         uses: actions/download-artifact@v2
@@ -148,5 +150,5 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@users.noreply.github.com'
           git add dist
-          git commit -m "Automatic build" && true
+          git commit -m "Automatic build"
           git push
