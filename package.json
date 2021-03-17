@@ -10,7 +10,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/glob": "^0.1.1",
-    "simple-git": "^2.36.2"
+    "simple-git": "^2.37.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
