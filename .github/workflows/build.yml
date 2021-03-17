@@ -89,7 +89,7 @@ jobs:
         with:
           repository: julien-capellari/test-is-workspace-affected
           path: test-repo
-          branch: test/test-a-affected
+          ref: test/test-a-affected
 
       - name: Test is affected
         id: affected
@@ -97,7 +97,7 @@ jobs:
         with:
           project-root: test-repo
           workspace: test-a
-          base: tests
+          base: master
 
       - name: Failed
         if: ${{ !steps.affected.outputs.affected }}
