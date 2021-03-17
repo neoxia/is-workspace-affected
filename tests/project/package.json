@@ -2,6 +2,6 @@
   "name": "test-project",
   "private": true,
   "workspaces": [
-    "test-a", "test-b"
+    "test-*"
   ]
 }
