@@ -10,8 +10,37 @@ on:
       - master
 
 jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.x
+
+      - name: Setup Cache
+        id: setup-cache
+        run: echo "::set-output name=yarn-cache::$(yarn cache dir)"
+
+      - uses: actions/cache@v2.1.4
+        with:
+          path: ${{ steps.setup-cache.outputs.yarn-cache }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install
+        run: yarn install --frozen-lockfile
+
+      - name: Test
+        run: yarn test
+
   build:
     runs-on: ubuntu-latest
+    needs: [unit-tests]
 
     steps:
       - uses: actions/checkout@v2
@@ -31,22 +60,97 @@ jobs:
           restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn build
 
-      - name: Commit built files
-        if: github.event_name == 'push'
-        run:  |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@users.noreply.github.com'
-          git add dist
-          git commit -m "Automatic build" && git push || true
-
       - name: Archive build artifacts
-        if: github.event_name != 'push'
         uses: actions/upload-artifact@v2
         with:
           name: bundle
           path: dist
+
+  action-tests:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    strategy:
+      matrix:
+        include:
+          - branch: test/test-a-affected
+            workspace: test-a
+            base: master
+            affected: true
+
+          - branch: test/test-a-affected
+            workspace: test-b
+            base: master
+            affected: false
+
+          - branch: test/tags
+            workspace: test-a
+            base: test-tag
+            affected: true
+
+          - branch: test/tags
+            workspace: test-b
+            base: test-tag
+            affected: false
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: bundle
+          path: dist
+
+      - name: Checkout test repository
+        uses: actions/checkout@v2
+        with:
+          repository: julien-capellari/test-is-workspace-affected
+          path: test-repo
+          ref: ${{ matrix.branch }}
+
+      - name: Test action
+        id: affected
+        uses: ./
+        with:
+          project-root: test-repo
+          workspace: ${{ matrix.workspace }}
+          base: ${{ matrix.base }}
+
+      - name: Should be affected
+        if: ${{ matrix.affected && !steps.affected.outputs.affected }}
+        run: |
+          echo "::error::Test failed: workspace ${{ matrix.workspace }} should be affected"
+          exit 1
+
+      - name: Should not be affected
+        if: ${{ !matrix.affected && steps.affected.outputs.affected }}
+        run: |
+          echo "::error::Test failed: workspace ${{ matrix.workspace }} should not be affected"
+          exit 1
+
+  deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: [action-tests]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: bundle
+          path: dist
+
+      - name: Commit bundle files
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@users.noreply.github.com'
+          git add dist
+          git commit -m "Automatic build" && git push || true

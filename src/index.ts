@@ -1,8 +1,7 @@
-import core from '@actions/core';
-import { npath } from '@yarnpkg/fslib';
+import * as core from '@actions/core';
 import simpleGit from 'simple-git';
 
-import yarn from './yarn';
+import { Project } from './project';
 
 (async () => {
   try {
@@ -15,10 +14,10 @@ import yarn from './yarn';
 
     // Load project
     const git = simpleGit({ baseDir: inputs.projectRoot });
-    const project = await yarn.getProject(inputs.projectRoot);
+    const project = await Project.loadProject(inputs.projectRoot);
 
     // Get workspace
-    const workspace = project.workspaces.find(wks => wks.manifest.name?.name === inputs.workspace);
+    const workspace = await project.getWorkspace(inputs.workspace);
 
     if (!workspace) {
       return core.setFailed(`Workspace ${inputs.workspace} not found.`);
@@ -47,7 +46,7 @@ import yarn from './yarn';
     }
 
     const diff = await core.group('git diff', async () => {
-      const res = await git.diff(['--name-only', baseRef, '--', npath.fromPortablePath(workspace.cwd)]);
+      const res = await git.diff(['--name-only', baseRef, '--', workspace.root]);
       core.info(res);
 
       return res;
