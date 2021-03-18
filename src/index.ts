@@ -56,6 +56,7 @@ import { Project } from './project';
 
     // Test if affected
     const affected = diff.split('\n')
+      .filter(file => file !== '')
       .some(minimatch.filter(inputs.pattern));
 
     if (affected) {
