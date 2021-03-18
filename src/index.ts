@@ -14,8 +14,8 @@ import { Project } from './project';
     };
 
     // Fetch base
-    await git.fetch('origin', inputs.base, '--progress', '--depth=1')
     git.setup(inputs.projectRoot);
+    await git.fetch('origin', inputs.base, '--progress', '--depth=1')
 
     // Get workspace
     const project = await Project.loadProject(inputs.projectRoot);

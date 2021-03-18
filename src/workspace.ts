@@ -1,16 +1,19 @@
+import * as core from '@actions/core';
 import { promises as fs } from 'fs';
 import minimatch from 'minimatch';
 import path from 'path';
 
 import { git } from './git';
 import { Package } from './package';
+import { Project } from './project';
 
 // Class
 export class Workspace {
   // Constructor
-  protected constructor(
+  constructor(
+    protected readonly pkg: Package,
     readonly root: string,
-    protected readonly pkg: Package
+    readonly project?: Project
   ) {}
 
   // Statics
@@ -21,8 +24,8 @@ export class Workspace {
     return JSON.parse(data);
   }
 
-  static async loadWorkspace(root: string): Promise<Workspace> {
-    return new Workspace(root, await this.loadPackage(root));
+  static async loadWorkspace(root: string, project?: Project): Promise<Workspace> {
+    return new Workspace(await this.loadPackage(root), root, project);
   }
 
   // Methods
@@ -41,5 +44,27 @@ export class Workspace {
   // Properties
   get name(): string {
     return this.pkg.name;
+  }
+
+  get dependencies(): Workspace[] {
+    if (!this.project) {
+      core.warning(`Cannot load dependencies of workspace ${this.name}: loaded outside of a project`);
+      return [];
+    }
+
+    // Build dependency array
+    const dependencies: Workspace[] = [];
+
+    if (this.pkg.dependencies) {
+      for (const dep of Object.keys(this.pkg.dependencies)) {
+        const wks = this.project.getWorkspace(dep);
+
+        if (wks) {
+          dependencies.push(wks);
+        }
+      }
+    }
+
+    return dependencies;
   }
 }
