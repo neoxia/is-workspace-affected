@@ -80,6 +80,12 @@ jobs:
             affected: true
 
           - branch: test/test-a-affected
+            workspace: test-a
+            base: master
+            pattern: '*.ts'
+            affected: false
+
+          - branch: test/test-a-affected
             workspace: test-b
             base: master
             affected: false
@@ -117,6 +123,7 @@ jobs:
           project-root: test-repo
           workspace: ${{ matrix.workspace }}
           base: ${{ matrix.base }}
+          pattern: ${{ matrix.pattern }}
 
       - name: Should be affected
         if: ${{ matrix.affected && !steps.affected.outputs.affected }}

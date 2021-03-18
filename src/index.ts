@@ -1,4 +1,5 @@
 import * as core from '@actions/core';
+import minimatch from 'minimatch';
 import simpleGit from 'simple-git';
 
 import { Project } from './project';
@@ -10,6 +11,7 @@ import { Project } from './project';
       projectRoot: core.getInput('project-root') || '.',
       workspace:   core.getInput('workspace', { required: true }),
       base:        core.getInput('base', { required: true }),
+      pattern:     core.getInput('pattern') || '**'
     };
 
     // Load project
@@ -53,7 +55,9 @@ import { Project } from './project';
     });
 
     // Test if affected
-    const affected = diff.split('\n').some(l => l !== '');
+    const affected = diff.split('\n')
+      .filter(file => file !== '')
+      .some(minimatch.filter(inputs.pattern));
 
     if (affected) {
       core.setOutput('affected', true);
