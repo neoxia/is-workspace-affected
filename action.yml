@@ -15,6 +15,11 @@ inputs:
     description: 'Base to compute diff'
     required: true
 
+  pattern:
+    description: 'Files to search in the diff'
+    required: false
+    default: '**'
+
 outputs:
   affected:
     description: 'true if workspace is affected'
