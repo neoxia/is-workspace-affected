@@ -29,6 +29,23 @@ export class Workspace {
   }
 
   // Methods
+  *dependencies(): Generator<Workspace, void> {
+    if (!this.project) {
+      core.warning(`Cannot load dependencies of workspace ${this.name}: loaded outside of a project`);
+      return;
+    }
+
+    // Generate dependencies
+    for (const deps of [this.pkg.dependencies, this.pkg.devDependencies]) {
+      if (!deps) continue;
+
+      for (const dep of Object.keys(deps)) {
+        const wks = this.project.getWorkspace(dep);
+        if (wks) yield wks;
+      }
+    }
+  }
+
   private async _testAffected(baseRef: string, pattern = '**'): Promise<boolean> {
     core.info(`Testing workspace ${this.name}`);
 
@@ -46,13 +63,14 @@ export class Workspace {
   private async _testDepsAffected(tested: Set<Workspace>, baseRef: string, pattern = '**'): Promise<boolean> {
     tested.add(this);
 
-    // Test if affected
-    const affected = this._testAffected(baseRef, pattern);
+    // Test if is affected
+    const affected = await this._testAffected(baseRef, pattern);
     if (affected) return true;
 
-    // If not affected => test dependencies
-    for (const dep of this.dependencies) {
-      if (tested.has(dep)) continue; // Already tested
+    // Test dependencies if are affected
+    for (const dep of this.dependencies()) {
+      // Check if already tested
+      if (tested.has(dep)) continue;
 
       // Test
       const affected = await dep._testDepsAffected(tested, baseRef, pattern);
@@ -69,37 +87,5 @@ export class Workspace {
   // Properties
   get name(): string {
     return this.pkg.name;
-  }
-
-  get dependencies(): Workspace[] {
-    if (!this.project) {
-      core.warning(`Cannot load dependencies of workspace ${this.name}: loaded outside of a project`);
-      return [];
-    }
-
-    // Build dependency array
-    const dependencies: Workspace[] = [];
-
-    if (this.pkg.dependencies) {
-      for (const dep of Object.keys(this.pkg.dependencies)) {
-        const wks = this.project.getWorkspace(dep);
-
-        if (wks) {
-          dependencies.push(wks);
-        }
-      }
-    }
-
-    if (this.pkg.devDependencies) {
-      for (const dep of Object.keys(this.pkg.devDependencies)) {
-        const wks = this.project.getWorkspace(dep);
-
-        if (wks) {
-          dependencies.push(wks);
-        }
-      }
-    }
-
-    return dependencies;
   }
 }
