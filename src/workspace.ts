@@ -29,7 +29,9 @@ export class Workspace {
   }
 
   // Methods
-  async isAffected(baseRef: string, pattern = '**'): Promise<boolean> {
+  private async _testAffected(baseRef: string, pattern = '**'): Promise<boolean> {
+    core.info(`Testing workspace ${this.name}`);
+
     // Compute diff
     const diff = await git.diff('--name-only', baseRef, '--', this.root);
 
@@ -39,6 +41,29 @@ export class Workspace {
     }
 
     return diff.some(minimatch.filter(pattern));
+  }
+
+  private async _testDepsAffected(tested: Set<Workspace>, baseRef: string, pattern = '**'): Promise<boolean> {
+    tested.add(this);
+
+    // Test if affected
+    const affected = this._testAffected(baseRef, pattern);
+    if (affected) return true;
+
+    // If not affected => test dependencies
+    for (const dep of this.dependencies) {
+      if (tested.has(dep)) continue; // Already tested
+
+      // Test
+      const affected = await dep._testDepsAffected(tested, baseRef, pattern);
+      if (affected) return true;
+    }
+
+    return false;
+  }
+
+  async isAffected(baseRef: string, pattern = '**'): Promise<boolean> {
+    return await this._testDepsAffected(new Set(), baseRef, pattern);
   }
 
   // Properties
@@ -57,6 +82,16 @@ export class Workspace {
 
     if (this.pkg.dependencies) {
       for (const dep of Object.keys(this.pkg.dependencies)) {
+        const wks = this.project.getWorkspace(dep);
+
+        if (wks) {
+          dependencies.push(wks);
+        }
+      }
+    }
+
+    if (this.pkg.devDependencies) {
+      for (const dep of Object.keys(this.pkg.devDependencies)) {
         const wks = this.project.getWorkspace(dep);
 
         if (wks) {
