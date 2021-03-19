@@ -86,6 +86,12 @@ jobs:
             affected: false
 
           - branch: test/test-a-affected
+            workspace: test-a
+            base: master
+            pattern: 'src/**'
+            affected: true
+
+          - branch: test/test-a-affected
             workspace: test-b
             base: master
             affected: false

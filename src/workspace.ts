@@ -57,7 +57,8 @@ export class Workspace {
       return diff.length > 0;
     }
 
-    return diff.some(minimatch.filter(pattern));
+    const rel = path.relative(git.root, this.root);
+    return diff.some(minimatch.filter(path.join(rel, pattern)));
   }
 
   private async _testDepsAffected(tested: Set<Workspace>, baseRef: string, pattern = '**'): Promise<boolean> {

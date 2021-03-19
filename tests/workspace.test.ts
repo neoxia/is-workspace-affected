@@ -55,6 +55,7 @@ describe('Workspace.isAffected', () => {
     jest.restoreAllMocks();
 
     prj = await Project.loadProject(TEST_PROJECT_ROOT);
+    git.root = TEST_PROJECT_ROOT;
   });
 
   // Tests
@@ -62,7 +63,7 @@ describe('Workspace.isAffected', () => {
     it('should be affected (test-b, no pattern)', async () => {
       // Spy
       jest.spyOn(git, 'diff')
-        .mockResolvedValue(['test.js']);
+        .mockResolvedValue(['test-b/test.js']);
 
       // Test
       const wks = prj.getWorkspace('test-b');
@@ -94,13 +95,13 @@ describe('Workspace.isAffected', () => {
     it('should be affected (test-b, with pattern)', async () => {
       // Spy
       jest.spyOn(git, 'diff')
-        .mockResolvedValue(['test.js']);
+        .mockResolvedValue(['test-b/src/test.js']);
 
       // Test
       const wks = prj.getWorkspace('test-b');
       expect(wks).not.toBeNull();
 
-      await expect(wks!.isAffected('master', '*.js'))
+      await expect(wks!.isAffected('master', 'src/**'))
         .resolves.toBeTruthy();
 
       expect(git.diff).toBeCalledTimes(1);
@@ -110,7 +111,7 @@ describe('Workspace.isAffected', () => {
     it('should not be affected (test-b, with pattern)', async () => {
       // Spy
       jest.spyOn(git, 'diff')
-        .mockResolvedValue(['test.js']);
+        .mockResolvedValue(['test-b/test.js']);
 
       // Test
       const wks = prj.getWorkspace('test-b');
@@ -128,7 +129,7 @@ describe('Workspace.isAffected', () => {
     it('should be affected (test-c, no pattern)', async () => {
       // Spy
       jest.spyOn(git, 'diff')
-        .mockImplementation(async (...args) => args[args.length - 1].endsWith('test-b') ? ['test.js'] : []);
+        .mockImplementation(async (...args) => args[args.length - 1].endsWith('test-b') ? ['test-b/test.js'] : []);
 
       // Test
       const wks = prj.getWorkspace('test-c');
@@ -162,7 +163,7 @@ describe('Workspace.isAffected', () => {
     it('should be affected (test-c, with pattern)', async () => {
       // Spy
       jest.spyOn(git, 'diff')
-        .mockImplementation(async (...args) => args[args.length - 1].endsWith('test-b') ? ['test.js'] : []);
+        .mockImplementation(async (...args) => args[args.length - 1].endsWith('test-b') ? ['test-b/test.js'] : []);
 
       // Test
       const wks = prj.getWorkspace('test-c');
@@ -179,7 +180,7 @@ describe('Workspace.isAffected', () => {
     it('should not be affected (test-c, with pattern)', async () => {
       // Spy
       jest.spyOn(git, 'diff')
-        .mockImplementation(async (...args) => args[args.length - 1].endsWith('test-b') ? ['test.js'] : []);
+        .mockImplementation(async (...args) => args[args.length - 1].endsWith('test-b') ? ['test-b/test.js'] : []);
 
 
       // Test

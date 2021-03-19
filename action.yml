@@ -16,7 +16,7 @@ inputs:
     required: true
 
   pattern:
-    description: 'Files to search in the diff'
+    description: 'Files to search in the diff. Relative to tested workspace root.'
     required: false
     default: '**'
 

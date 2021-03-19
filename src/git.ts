@@ -10,10 +10,12 @@ export interface GitTagsOptions {
 export const git = {
   // Attributes
   git: simpleGit(),
+  root: process.cwd(),
 
   // Methods
   setup(root: string): void {
     this.git = simpleGit({ baseDir: root });
+    this.root = root;
   },
 
   // Commands
