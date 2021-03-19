@@ -23,16 +23,16 @@ describe('Project.getWorkspace', () => {
   });
 
   // Tests
-  it('should return project\'s test-a workspace', async () => {
-    await expect(prj.getWorkspace('test-a'))
-      .resolves.toEqual(expect.objectContaining({
+  it('should return project\'s test-a workspace', () => {
+    expect(prj.getWorkspace('test-a'))
+      .toEqual(expect.objectContaining({
         name: 'test-a',
         root: path.join(TEST_PROJECT_ROOT, 'test-a')
       }));
   });
 
-  it('should return null', async () => {
-    await expect(prj.getWorkspace('does-not-exists'))
-      .resolves.toBeNull();
+  it('should return null', () => {
+    expect(prj.getWorkspace('does-not-exists'))
+      .toBeNull();
   });
 });

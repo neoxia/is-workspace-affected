@@ -1,7 +1,6 @@
 import * as core from '@actions/core';
-import minimatch from 'minimatch';
-import simpleGit from 'simple-git';
 
+import { git } from './git';
 import { Project } from './project';
 
 (async () => {
@@ -14,52 +13,30 @@ import { Project } from './project';
       pattern:     core.getInput('pattern') || '**'
     };
 
-    // Load project
-    const git = simpleGit({ baseDir: inputs.projectRoot });
-    const project = await Project.loadProject(inputs.projectRoot);
+    // Fetch base
+    git.setup(inputs.projectRoot);
+    await git.fetch('origin', inputs.base, '--progress', '--depth=1')
 
     // Get workspace
+    const project = await Project.loadProject(inputs.projectRoot);
     const workspace = await project.getWorkspace(inputs.workspace);
 
     if (!workspace) {
       return core.setFailed(`Workspace ${inputs.workspace} not found.`);
     }
 
-    // Fetch tags
-    const tags = await core.group('git fetch --tags', async () => {
-      const result = await git.fetch(['--tags']);
-      core.info(result.raw);
-
-      return await git.tags();
-    });
-
-    // Fetch base
-    await core.group(`git fetch origin ${inputs.base}`, async () => {
-      const result = await git.fetch('origin', inputs.base, ['--progress', '--depth=1']);
-      core.info(result.raw);
-    });
-
-    // Compute diff
+    // Build base ref for git diff
+    const tags = await git.tags({ fetch: true });
     const isTag = tags.all.some(tag => tag === inputs.base);
+
     let baseRef = inputs.base;
 
     if (!isTag) {
       baseRef = `origin/${baseRef}`;
     }
 
-    const diff = await core.group('git diff', async () => {
-      const res = await git.diff(['--name-only', baseRef, '--', workspace.root]);
-      core.info(res);
-
-      return res;
-    });
-
     // Test if affected
-    const affected = diff.split('\n')
-      .filter(file => file !== '')
-      .some(minimatch.filter(inputs.pattern));
-
-    if (affected) {
+    if (await workspace.isAffected(baseRef, inputs.pattern)) {
       core.setOutput('affected', true);
       core.info(`Workspace ${inputs.workspace} affected`);
     } else {
