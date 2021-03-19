@@ -100,6 +100,11 @@ jobs:
             base: test-tag
             affected: false
 
+          - branch: test/dependency-affected
+            workspace: test-c
+            base: master
+            affected: true
+
     steps:
       - uses: actions/checkout@v2
 
