@@ -1,5 +1,7 @@
 # is-workspace-affected
 [![Build](https://github.com/julien-capellari/is-workspace-affected/actions/workflows/build.yml/badge.svg)](https://github.com/julien-capellari/is-workspace-affected/actions/workflows/build.yml)
+![License](https://img.shields.io/github/license/julien-capellari/is-workspace-affected)
+![Version](https://img.shields.io/github/v/release/julien-capellari/is-workspace-affected)
 
 ## Description
 Github Action that tests if an yarn workspace is affected by diff with another branch. Affected means we find one file under the workspace root
@@ -20,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - uses: julien-capellari/is-workspace-affected@v0.5
+      - uses: julien-capellari/is-workspace-affected@v1.0
         id: affected
         with:
           workspace: front
