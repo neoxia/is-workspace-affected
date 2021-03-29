@@ -31,6 +31,9 @@ jobs:
         run: yarn workspace front run build
 ```
 
+This will build the `front` workspace if it (or it's dependencies) has any difference with the version on `master` branch.
+Here we you a branch, be you can also use a tag, this will allow test on the same branch.
+
 ## Inputs
 | Name         | Default    | Description
 | :----------- | :--------- | :-------------------
