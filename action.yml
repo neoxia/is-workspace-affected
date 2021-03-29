@@ -1,6 +1,10 @@
 name: 'is-workspace-affected'
 description: 'Test if a yarn workspace is affected by changes'
 
+branding:
+  icon: check-square
+  color: gray-dark
+
 inputs:
   project-root:
     description: 'Yarn project root'
