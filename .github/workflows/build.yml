@@ -22,7 +22,7 @@ jobs:
         id: setup-cache
         run: echo "::set-output name=yarn-cache::$(yarn cache dir)"
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.5
         with:
           path: ${{ steps.setup-cache.outputs.yarn-cache }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -49,7 +49,7 @@ jobs:
         id: setup-cache
         run: echo "::set-output name=yarn-cache::$(yarn cache dir)"
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.5
         with:
           path: ${{ steps.setup-cache.outputs.yarn-cache }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
