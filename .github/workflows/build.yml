@@ -170,8 +170,8 @@ jobs:
 
       - name: Commit bundle files
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@users.noreply.github.com'
+          git config --global user.name 'Boobrie'
+          git config --global user.email 'boobrie@users.noreply.github.com'
 
           if `git diff --quiet --exit-code`
           then
