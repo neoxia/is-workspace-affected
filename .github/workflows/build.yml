@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
         with:
           submodules: true
 
@@ -43,7 +43,7 @@ jobs:
     needs: [unit-tests]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       - uses: actions/setup-node@v2.1.5
         with:
@@ -116,7 +116,7 @@ jobs:
             affected: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       - name: Download build artifacts
         uses: actions/download-artifact@v2
@@ -125,7 +125,7 @@ jobs:
           path: dist
 
       - name: Checkout test repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
         with:
           repository: julien-capellari/test-is-workspace-affected
           path: test-repo
