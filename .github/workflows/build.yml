@@ -127,7 +127,7 @@ jobs:
       - name: Checkout test repository
         uses: actions/checkout@v2.3.4
         with:
-          repository: julien-capellari/test-is-workspace-affected
+          repository: neoxia/test-is-workspace-affected
           path: test-repo
           ref: ${{ matrix.branch }}
 
