@@ -11,7 +11,7 @@
     "@actions/core": "^1.2.7",
     "@actions/glob": "^0.1.1",
     "minimatch": "^3.0.4",
-    "simple-git": "^2.38.1"
+    "simple-git": "^2.39.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
