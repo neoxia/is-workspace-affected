@@ -9,13 +9,16 @@ import { Project } from './project';
     const inputs = {
       projectRoot: core.getInput('project-root') || '.',
       workspace:   core.getInput('workspace', { required: true }),
-      base:        core.getInput('base', { required: true }),
+      base:        core.getInput('base'),
       pattern:     core.getInput('pattern') || '**'
     };
 
     // Fetch base
     git.setup(inputs.projectRoot);
-    await git.fetch('origin', inputs.base, '--progress', '--depth=1')
+
+    if (inputs.base) {
+      await git.fetch('origin', inputs.base, '--progress', '--depth=1')
+    }
 
     // Get workspace
     const project = await Project.loadProject(inputs.projectRoot);
@@ -31,8 +34,12 @@ import { Project } from './project';
 
     let baseRef = inputs.base;
 
-    if (!isTag) {
+    if (!isTag && inputs.base) {
       baseRef = `origin/${baseRef}`;
+    }
+
+    if (!isTag && !inputs.base) {
+      baseRef = `HEAD^`;
     }
 
     // Test if affected
