@@ -29,5 +29,5 @@ outputs:
     description: 'true if workspace is affected'
 
 runs:
-  using: node12
+  using: node16
   main: 'dist/bundle.js'
