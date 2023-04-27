@@ -1,4 +1,4 @@
-import * as core from '@actions/core';
+import core from '@actions/core';
 import simpleGit, { FetchResult, TagResult } from 'simple-git';
 
 // Types

@@ -1,6 +1,6 @@
-import path from 'path';
+import path from 'node:path';
 
-import { Project } from '../src/project';
+import { Project } from '@/src/project';
 
 // Constants
 const TEST_PROJECT_ROOT = path.join(__dirname, 'project');

@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
-import { promises as fs } from 'fs';
-import minimatch from 'minimatch';
-import path from 'path';
+import { minimatch } from 'minimatch';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 import { git } from './git';
 import { Package } from './package';

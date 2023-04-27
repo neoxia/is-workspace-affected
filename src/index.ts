@@ -1,4 +1,4 @@
-import * as core from '@actions/core';
+import core from '@actions/core';
 
 import { git } from './git';
 import { Project } from './project';
