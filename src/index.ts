@@ -1,4 +1,4 @@
-import core from '@actions/core';
+import * as core from '@actions/core';
 
 import { git } from './git';
 import { Project } from './project';
@@ -44,7 +44,6 @@ import { Project } from './project';
     }
 
   } catch (error) {
-    console.error(error);
     core.setFailed(error.message);
   }
 })();
