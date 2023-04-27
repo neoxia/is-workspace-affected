@@ -2,7 +2,6 @@ import { type Configuration } from 'webpack';
 import path from 'node:path';
 
 const config: Configuration = {
-  devtool: 'source-map',
   target: 'node16',
   entry: './src/index.ts',
   mode: 'production',
