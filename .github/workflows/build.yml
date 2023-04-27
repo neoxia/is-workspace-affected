@@ -29,9 +29,8 @@ jobs:
       - name: Test
         run: yarn test
 
-  build:
+  check-build:
     runs-on: ubuntu-latest
-    needs: [unit-tests]
 
     steps:
       - uses: actions/checkout@v3.5.2
@@ -53,9 +52,17 @@ jobs:
           name: bundle
           path: dist
 
+      - name: Check build
+        run: |
+          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
+            echo "Detected uncommitted changes after build. See status below:"
+            git diff
+            exit 1
+          fi
+
   action-tests:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [check-build]
 
     strategy:
       matrix:
@@ -100,12 +107,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: bundle
-          path: dist
-
       - name: Checkout test repository
         uses: actions/checkout@v3.5.2
         with:
@@ -133,37 +134,3 @@ jobs:
         run: |
           echo "::error::Test failed: workspace ${{ matrix.workspace }} should not be affected"
           exit 1
-
-  deploy:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    needs: [action-tests]
-    environment: master
-
-    permissions:
-      contents: write
-
-    steps:
-      - uses: actions/checkout@v3.5.2
-        with:
-          token: ${{ secrets.PUSH_TOKEN }}
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: bundle
-          path: dist
-
-      - name: Commit bundle files
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-
-          if `git diff --quiet --exit-code`
-          then
-            echo "Nothing changed !"
-          else
-            git add dist
-            git commit -m "Automatic build"
-            git push
-          fi

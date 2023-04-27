@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import * as glob from '@actions/glob';
-import path from 'path';
+import path from 'node:path';
 
 import { Workspace } from './workspace';
 
