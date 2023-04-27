@@ -27,33 +27,26 @@ coverage
 # nyc test coverage
 .nyc_output
 
-# Dependency directories
-node_modules/
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # TypeScript cache
 *.tsbuildinfo
 
-# Optional npm cache directory
-.npm
-
 # Optional eslint cache
 .eslintcache
-
-# Output of 'npm pack'
-*.tgz
 
 # Yarn Integrity file
 .yarn-integrity
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
-
-# yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*
 
 # Build output
 /dist/*
