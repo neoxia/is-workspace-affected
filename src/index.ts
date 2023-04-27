@@ -44,6 +44,7 @@ import { Project } from './project';
     }
 
   } catch (error) {
+    console.error(error);
     core.setFailed(error.message);
   }
 })();
