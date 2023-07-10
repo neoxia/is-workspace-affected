@@ -1103,10 +1103,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.18.25":
-  version: 16.18.25
-  resolution: "@types/node@npm:16.18.25"
-  checksum: 181760ad6b54fcc498dfeb249e98bbf0be51d7c35e92e760e1a82004fa42b86e8c33a8f8dd7743b5ef872bda0753d9e6a5b8e3f0aed63e9eb79b4e65760c1fbe
+"@types/node@npm:^20.4.1":
+  version: 20.4.1
+  resolution: "@types/node@npm:20.4.1"
+  checksum: 22cbcc792f2eb636fe4188778ed0f32658ab872aa7fcb9847b3fa289a42b14b9f5e30c6faec50ef3c7adbc6c2a246926e5858136bb8b10c035a3fcaa6afbeed2
   languageName: node
   linkType: hard
 
@@ -2626,7 +2626,7 @@ __metadata:
     "@actions/glob": ^0.4.0
     "@types/jest": ^29.5.1
     "@types/minimatch": ^5.1.1
-    "@types/node": ^16.18.25
+    "@types/node": ^20.4.1
     jest: ^29.5.0
     minimatch: ^9.0.0
     simple-git: ^3.17.0
