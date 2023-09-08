@@ -23,7 +23,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
     "webpack": "^5.88.1",
-    "webpack-cli": "^5.1.1"
+    "webpack-cli": "^5.1.4"
   },
   "packageManager": "yarn@3.5.0"
 }
