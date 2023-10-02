@@ -1,22 +1,23 @@
 import * as core from '@actions/core';
 import { FetchResult, TagResult } from 'simple-git';
+import { vi } from 'vitest';
 
-import { git } from '@/src/git';
+import { git } from '@/src/git.js';
 
 // Setup
-jest.mock('@actions/core');
+vi.mock('@actions/core');
 
 beforeEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 
-  jest.mocked(core.group).mockImplementation((name, fn) => fn());
+  vi.mocked(core.group).mockImplementation((name, fn) => fn());
 });
 
 // Tests
 describe('git.fetch', () => {
   it('should call git fetch command', async () => {
     const result = { raw: 'test' } as FetchResult;
-    jest.spyOn(git.git, 'fetch').mockResolvedValue(result);
+    vi.spyOn(git.git, 'fetch').mockResolvedValue(result);
 
     // Call
     await expect(git.fetch('a', 'b')).resolves.toEqual(result);
@@ -30,7 +31,7 @@ describe('git.fetch', () => {
 
 describe('git.diff', () => {
   it('should call git diff command', async () => {
-    jest.spyOn(git.git, 'diff').mockResolvedValue('test\nlife=42');
+    vi.spyOn(git.git, 'diff').mockResolvedValue('test\nlife=42');
 
     // Call
     await expect(git.diff('a', 'b')).resolves.toEqual([
@@ -52,7 +53,7 @@ describe('git.tags', () => {
   };
 
   beforeEach(() => {
-    jest.spyOn(git.git, 'tags').mockResolvedValue(result);
+    vi.spyOn(git.git, 'tags').mockResolvedValue(result);
   });
 
   it('should run git tag to load tags', async () => {
@@ -62,7 +63,7 @@ describe('git.tags', () => {
   });
 
   it('should run git fetch and git tag to load tags', async () => {
-    jest.spyOn(git.git, 'fetch').mockResolvedValue({} as FetchResult);
+    vi.spyOn(git.git, 'fetch').mockResolvedValue({} as FetchResult);
 
     await expect(git.tags({ fetch: true })).resolves.toEqual(result);
 
