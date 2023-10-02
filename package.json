@@ -39,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "6.7.3",
     "@typescript-eslint/parser": "6.7.3",
     "@vitest/coverage-v8": "0.34.6",
+    "browserslist": "4.22.1",
     "eslint": "8.50.0",
     "eslint-plugin-vitest": "0.3.1",
     "fork-ts-checker-webpack-plugin": "8.0.0",
