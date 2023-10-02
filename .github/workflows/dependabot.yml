@@ -22,49 +22,13 @@ jobs:
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v1.6.0
 
-  build:
+  auto-merge:
     if: ${{ needs.metadata.outputs.dependency-type == 'direct:production' && needs.metadata.outputs.package-ecosystem == 'npm_and_yarn' && needs.metadata.outputs.update_type != 'version-update:semver-major' }}
     runs-on: ubuntu-latest
     needs: [metadata]
 
     permissions:
       contents: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4.1.0
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-          cache: yarn
-
-      - name: Install
-        run: yarn install --immutable
-
-      - name: Build
-        run: yarn run build:prod
-
-      - name: Update bundle
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-        
-          git add dist/*
-          git commit -m '[dependabot skip] update bundle' || exit 0
-          git push
-
-  auto-merge:
-    if: ${{ always() && contains(fromJSON('["success", "skipped"]'), needs.build.result) }}
-    runs-on: ubuntu-latest
-    needs: [build]
-
-    permissions:
-      contents: write
-      pull-requests: write
 
     steps:
       - name: Enable auto-merge for Dependabot PRs
