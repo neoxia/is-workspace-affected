@@ -1,0 +1,36 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "root": true,
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "ignorePatterns": [
+    "coverage/**",
+    "dist/**"
+  ],
+  "overrides": [
+    {
+      "files": "**/*.{js,jsx,ts,tsx}",
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-console": ["error", {
+          "allow": ["warn", "error"]
+        }]
+      }
+    },
+    {
+      "files": "**/*.test.{js,jsx,ts,tsx}",
+      "extends": [
+        "plugin:vitest/recommended"
+      ]
+    }
+  ]
+}
