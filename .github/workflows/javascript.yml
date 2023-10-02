@@ -45,15 +45,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.0
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.PAT }}
 
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3.8.1
@@ -79,20 +75,6 @@ jobs:
           if [ "$(git diff --ignore-space-at-eol dist/bundle.cjs | wc -l)" -gt "0" ]; then
             echo "::error file=dist/bundle.js::Detected uncommitted changes after build. Please run `yarn build:prod` and commit the changes."
             exit 1
-          fi
-
-      - name: Update bundle
-        if: ${{ github.actor == 'dependabot[bot]' }}
-        run: |
-          if [ "$(git diff --ignore-space-at-eol dist/bundle.cjs | wc -l)" -gt "0" ]; then
-            echo "::notice::Detected uncommitted changes after build. Update committed bundle."
-          
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            
-            git add dist/*
-            git commit -m '[dependabot skip] chore: update bundle' || exit 0
-            git push
           fi
 
   tests:
@@ -209,12 +191,6 @@ jobs:
           repository: neoxia/test-is-workspace-affected
           path: test-repo
           ref: ${{ matrix.branch }}
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: bundle
-          path: dist
 
       - name: Test action
         id: affected
