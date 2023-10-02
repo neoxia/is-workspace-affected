@@ -24,7 +24,6 @@ jobs:
         run: yarn install --immutable
 
       - name: Update bundle
-        if: ${{ github.event_name == 'pull_request' }}
         run: |
           if [ "$(git diff --ignore-space-at-eol dist/bundle.cjs | wc -l)" -gt "0" ]; then
             echo "::notice::Detected uncommitted changes after build. Make a commit containing the changes."
