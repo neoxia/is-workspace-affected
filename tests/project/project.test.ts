@@ -1,4 +1,4 @@
-import glob from '@actions/glob';
+import * as glob from '@actions/glob';
 import { fs, vol } from 'memfs';
 import path from 'node:path';
 import { vi } from 'vitest';
@@ -6,18 +6,20 @@ import { vi } from 'vitest';
 import { Project } from '@/src/project/project.js';
 
 // Mocks
-vi.mock('@actions/glob', () => ({
-  default: {
-    create: vi.fn(() => ({
-      async* globGenerator() {
-        console.log('toto');
-        yield 'wks-a';
-        yield 'wks-b';
-        yield 'wks-c';
-      }
-    })),
-  }
-}));
+vi.mock('@actions/glob', () => {
+  const create = vi.fn(() => ({
+    async* globGenerator() {
+      yield 'wks-a';
+      yield 'wks-b';
+      yield 'wks-c';
+    }
+  }));
+
+  return ({
+    create,
+    default: { create },
+  });
+});
 vi.mock('node:fs/promises', () => ({ default: fs.promises }));
 
 // Setup
