@@ -28,7 +28,6 @@ jobs:
 
       - name: Update bundle
         run: |
-          git diff --ignore-space-at-eol dist/bundle.cjs
           if [ "$(git diff --ignore-space-at-eol dist/bundle.cjs | wc -l)" -gt "0" ]; then
             echo "::notice::Detected uncommitted changes after build. Make a commit containing the changes."
           
