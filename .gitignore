@@ -14,5 +14,4 @@ coverage
 *.pid
 
 dist/*
-!dist/bundle.js
-!dist/bundle.js.map
+!dist/bundle.*

@@ -62,6 +62,7 @@ jobs:
     needs: [check-build]
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - branch: test/test-a-affected
