@@ -23,7 +23,7 @@
     "@actions/glob": "^0.4.0",
     "@jujulego/quick-tag": "^0.3.2",
     "@jujulego/utils": "^2.0.1",
-    "minimatch": "^9.0.0",
+    "minimatch": "^9.0.3",
     "normalize-package-data": "^6.0.0",
     "semver": "^7.5.4",
     "simple-git": "^3.20.0"

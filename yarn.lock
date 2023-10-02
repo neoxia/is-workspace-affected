@@ -3055,7 +3055,7 @@ __metadata:
     eslint-plugin-vitest: 0.3.1
     fork-ts-checker-webpack-plugin: 8.0.0
     memfs: 4.5.0
-    minimatch: ^9.0.0
+    minimatch: ^9.0.3
     normalize-package-data: ^6.0.0
     semver: ^7.5.4
     simple-git: ^3.20.0
@@ -3506,12 +3506,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "minimatch@npm:9.0.0"
+"minimatch@npm:^9.0.3":
+  version: 9.0.3
+  resolution: "minimatch@npm:9.0.3"
   dependencies:
     brace-expansion: ^2.0.1
-  checksum: 7bd57899edd1d1b0560f50b5b2d1ea4ad2a366c5a2c8e0a943372cf2f200b64c256bae45a87a80915adbce27fa36526264296ace0da57b600481fe5ea3e372e5
+  checksum: 253487976bf485b612f16bf57463520a14f512662e592e95c571afdab1442a6a6864b6c88f248ce6fc4ff0b6de04ac7aa6c8bb51e868e99d1d65eb0658a708b5
   languageName: node
   linkType: hard
 
