@@ -180,6 +180,20 @@ jobs:
           echo "::error::Test failed: workspace ${{ matrix.workspace }} should not be affected"
           exit 1
 
+  complete:
+    if: ${{ github.event_name == 'pull_request' && always() }}
+
+    runs-on: ubuntu-latest
+    needs: [ tests, action-tests ]
+
+    steps:
+      - name: Failed
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: exit 1
+
+      - name: Success
+        run: echo 'You are soooo curious ;)'
+
   release:
     if: ${{ github.event_name == 'push' }}
 

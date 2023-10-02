@@ -11,7 +11,8 @@
     "clean": "shx rm -rf dist",
     "build": "webpack",
     "build:prod": "webpack --config webpack.prod.js",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:types": "vitest typecheck"
   },
   "engines": {
     "node": "16.x"
