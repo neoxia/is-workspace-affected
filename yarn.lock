@@ -3058,7 +3058,7 @@ __metadata:
     minimatch: ^9.0.0
     normalize-package-data: ^6.0.0
     semver: ^7.5.4
-    simple-git: ^3.17.0
+    simple-git: ^3.20.0
     swc-loader: 0.2.3
     ts-node: 10.9.1
     typescript: 5.2.2
@@ -4248,14 +4248,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git@npm:^3.17.0":
-  version: 3.17.0
-  resolution: "simple-git@npm:3.17.0"
+"simple-git@npm:^3.20.0":
+  version: 3.20.0
+  resolution: "simple-git@npm:3.20.0"
   dependencies:
     "@kwsites/file-exists": ^1.1.1
     "@kwsites/promise-deferred": ^1.1.1
     debug: ^4.3.4
-  checksum: 977a05cb0b5087296348b5afa682ce552f43234f5fd29b44c3d7f56b3682d10dcb03752a418e508aaffcbdb6ea2e304a3ef10095197d6743d2353adb85f32592
+  checksum: 56b50c574a950a8ddc87033083e073216708ccf6aaa3c904da05a5b3e52502287049dde49df1df42d5ec072c1050ef8219733e6cfebf71885081917ffcdbb54c
   languageName: node
   linkType: hard
 
