@@ -184,7 +184,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
 
     runs-on: ubuntu-latest
-    needs: [ actions-tests ]
+    needs: [ action-tests ]
 
     permissions:
       contents: write
