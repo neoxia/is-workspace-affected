@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 import * as glob from '@actions/glob';
 import path from 'node:path';
 
-import { Workspace } from './workspace';
+import { Workspace } from './workspace.ts';
 
 // Class
 export class Project extends Workspace {
@@ -21,7 +21,7 @@ export class Project extends Workspace {
   private async loadWorkspaces() {
     // Load workspaces
     if (this.pkg.workspaces && this.pkg.workspaces.length > 0) {
-      const patterns = this.pkg.workspaces.map(wks => path.join(this.root, wks, 'package.json'));
+      const patterns = this.pkg.workspaces.map((wks) => path.join(this.root, wks, 'package.json'));
       const globber = await glob.create(patterns.join('\n'));
 
       for await (let root of globber.globGenerator()) {

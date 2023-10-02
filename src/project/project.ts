@@ -5,7 +5,7 @@ import normalize, { Package } from 'normalize-package-data';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { Workspace } from './workspace';
+import { Workspace } from './workspace.ts';
 
 // Class
 export class Project {

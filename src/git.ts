@@ -1,6 +1,8 @@
 import * as core from '@actions/core';
 import simpleGit, { FetchResult, TagResult } from 'simple-git';
 
+import { fixDefaultExport } from './utils.ts';
+
 // Types
 export interface GitTagsOptions {
   fetch?: boolean;
@@ -9,12 +11,12 @@ export interface GitTagsOptions {
 // Namespace
 export const git = {
   // Attributes
-  git: simpleGit(),
+  git: fixDefaultExport(simpleGit)(),
   root: process.cwd(),
 
   // Methods
   setup(root: string): void {
-    this.git = simpleGit({ baseDir: root });
+    this.git = fixDefaultExport(simpleGit)({ baseDir: root });
     this.root = root;
   },
 

@@ -4,8 +4,8 @@ import path from 'node:path';
 import { Package } from 'normalize-package-data';
 import { satisfies } from 'semver';
 
-import { git } from '@/src/git';
-import { Project } from './project';
+import { git } from '../git.ts';
+import { Project } from './project.ts';
 
 // Class
 export class Workspace {

@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "tsBuildInfoFile": "./dist/tsconfig.build.tsbuildinfo",
+    "rootDir": "./src"
+  },
+  "files": [
+    "./src/index.ts",
+  ]
+}

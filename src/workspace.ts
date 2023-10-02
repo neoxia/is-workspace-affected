@@ -3,9 +3,9 @@ import { minimatch } from 'minimatch';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { git } from './git';
-import { Package } from './package';
-import { Project } from './project';
+import { git } from './git.ts';
+import { Package } from './package.ts';
+import { Project } from './project.ts';
 
 // Class
 export class Workspace {

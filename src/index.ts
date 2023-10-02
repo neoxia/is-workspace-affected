@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 
-import { git } from './git';
-import { Project } from './project';
+import { git } from './git.ts';
+import { Project } from './project.ts';
 
 (async () => {
   try {
@@ -27,7 +27,7 @@ import { Project } from './project';
 
     // Build base ref for git diff
     const tags = await git.tags({ fetch: true });
-    const isTag = tags.all.some(tag => tag === inputs.base);
+    const isTag = tags.all.some((tag) => tag === inputs.base);
 
     let baseRef = inputs.base;
 
