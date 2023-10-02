@@ -113,8 +113,8 @@ describe('Workspace.isAffected', () => {
   });
 
   it('should return true as tested workspace is not affected but its dependencies are', async () => {
-    vi.spyOn(wksA, 'dependencies').mockImplementation(async function* () { yield wksB });
-    vi.spyOn(wksA, 'devDependencies').mockImplementation(async function* () { yield wksC });
+    vi.spyOn(wksA, 'dependencies').mockImplementation(async function* () { yield wksB; });
+    vi.spyOn(wksA, 'devDependencies').mockImplementation(async function* () { yield wksC; });
     vi.spyOn(wksB, 'isAffected').mockResolvedValue(true);
     vi.spyOn(wksC, 'isAffected').mockResolvedValue(false);
 
@@ -128,8 +128,8 @@ describe('Workspace.isAffected', () => {
   });
 
   it('should return true as tested workspace is not affected but its devDependencies are', async () => {
-    vi.spyOn(wksA, 'dependencies').mockImplementation(async function* () { yield wksB });
-    vi.spyOn(wksA, 'devDependencies').mockImplementation(async function* () { yield wksC });
+    vi.spyOn(wksA, 'dependencies').mockImplementation(async function* () { yield wksB; });
+    vi.spyOn(wksA, 'devDependencies').mockImplementation(async function* () { yield wksC; });
     vi.spyOn(wksB, 'isAffected').mockResolvedValue(false);
     vi.spyOn(wksC, 'isAffected').mockResolvedValue(true);
 

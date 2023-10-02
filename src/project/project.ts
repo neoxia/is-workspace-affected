@@ -90,7 +90,7 @@ export class Project {
       const { workspaces = [] } = main.manifest;
 
       for (const pattern of workspaces) {
-        const globber = await glob.create(path.join(this.root, pattern), { matchDirectories: true })
+        const globber = await glob.create(path.join(this.root, pattern), { matchDirectories: true });
 
         for await (const dir of globber.globGenerator()) {
           try {

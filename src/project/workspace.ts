@@ -115,6 +115,6 @@ export class Workspace {
   }
 
   get reference(): string {
-    return qstr`${this.name}#?:${this.version}@#$?#`
+    return qstr`${this.name}#?:${this.version}@#$?#`;
   }
 }

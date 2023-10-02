@@ -15,7 +15,7 @@ import { Project } from './project/project.ts';
 
     // Fetch base
     git.setup(inputs.projectRoot);
-    await git.fetch('origin', inputs.base, '--progress', '--depth=1')
+    await git.fetch('origin', inputs.base, '--progress', '--depth=1');
 
     // Get workspace
     const project = new Project(inputs.projectRoot);
