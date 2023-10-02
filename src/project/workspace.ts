@@ -1,4 +1,5 @@
 import * as core from '@actions/core';
+import { qstr } from '@jujulego/quick-tag';
 import { minimatch } from 'minimatch';
 import path from 'node:path';
 import { Package } from 'normalize-package-data';
@@ -16,9 +17,9 @@ export class Workspace {
 
   // Constructor
   constructor(
+    readonly project: Project,
     cwd: string,
-    readonly manifest: Package,
-    readonly project: Project
+    readonly manifest: Package
   ) {
     this.cwd = path.resolve(project.root, cwd);
   }
@@ -114,6 +115,6 @@ export class Workspace {
   }
 
   get reference(): string {
-    return this.version ? `${this.name}@${this.version}` : this.name;
+    return qstr`${this.name}#?:${this.version}@#$?#`
   }
 }
