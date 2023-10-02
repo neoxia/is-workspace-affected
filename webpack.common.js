@@ -14,7 +14,7 @@ const commonConfig = {
   target: 'browserslist:node 16',
   entry: './src/index.ts',
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.cjs',
     path: path.resolve(DIRNAME, 'dist'),
     clean: true,
   },

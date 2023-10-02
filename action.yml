@@ -30,4 +30,4 @@ outputs:
 
 runs:
   using: node16
-  main: 'dist/bundle.js'
+  main: 'dist/bundle.cjs'
