@@ -29,5 +29,5 @@ outputs:
     description: 'true if workspace is affected'
 
 runs:
-  using: node16
+  using: node20
   main: 'dist/bundle.cjs'

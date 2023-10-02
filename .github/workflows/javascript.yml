@@ -23,10 +23,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.0
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 20.x
           cache: yarn
 
       - name: Install
@@ -51,10 +51,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v3.8.1
         with:
-          node-version: 16.x
+          node-version: 20.x
           cache: yarn
 
       - name: Install
@@ -84,10 +84,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.0
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v3.8.1
         with:
-          node-version: 16.x
+          node-version: 20.x
           cache: yarn
 
       - name: Install
