@@ -53,7 +53,7 @@ jobs:
       - name: Check build
         run: |
           if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
-            echo "::warn::Detected uncommitted changes after build. Please run `yarn build:prod` and commit the changes"
+            echo "::error file=dist/bundle.js::Detected uncommitted changes after build. Please run `yarn build:prod` and commit the changes."
             exit 1
           fi
 
