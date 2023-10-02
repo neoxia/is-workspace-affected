@@ -1,16 +1,11 @@
-import * as core from '@actions/core';
 import { FetchResult, TagResult } from 'simple-git';
 import { vi } from 'vitest';
 
 import { git } from '@/src/git.js';
 
 // Setup
-vi.mock('@actions/core');
-
 beforeEach(() => {
-  vi.restoreAllMocks();
-
-  vi.mocked(core.group).mockImplementation((name, fn) => fn());
+  vi.clearAllMocks();
 });
 
 // Tests
@@ -23,9 +18,6 @@ describe('git.fetch', () => {
     await expect(git.fetch('a', 'b')).resolves.toEqual(result);
 
     expect(git.git.fetch).toHaveBeenCalledWith(['a', 'b']);
-
-    expect(core.group).toHaveBeenCalledWith('git fetch a b', expect.any(Function));
-    expect(core.info).toHaveBeenCalledWith('test');
   });
 });
 
@@ -40,9 +32,6 @@ describe('git.diff', () => {
     ]);
 
     expect(git.git.diff).toHaveBeenCalledWith(['a', 'b']);
-
-    expect(core.group).toHaveBeenCalledWith('git diff a b', expect.any(Function));
-    expect(core.info).toHaveBeenCalledWith('test\nlife=42');
   });
 });
 
