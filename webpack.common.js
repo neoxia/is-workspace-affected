@@ -11,7 +11,7 @@ const DIRNAME = path.dirname(url.fileURLToPath(import.meta.url));
  */
 const commonConfig = {
   devtool: 'source-map',
-  target: 'browserslist:node 16',
+  target: 'browserslist:node 20',
   entry: './src/index.ts',
   output: {
     filename: 'bundle.cjs',
