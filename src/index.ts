@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 
 import { git } from './git.ts';
-import { Project } from './project.ts';
+import { Project } from './project/project.ts';
 
 (async () => {
   try {
@@ -18,8 +18,8 @@ import { Project } from './project.ts';
     await git.fetch('origin', inputs.base, '--progress', '--depth=1')
 
     // Get workspace
-    const project = await Project.loadProject(inputs.projectRoot);
-    const workspace = await project.getWorkspace(inputs.workspace);
+    const project = new Project(inputs.projectRoot);
+    const workspace = await project.workspace(inputs.workspace);
 
     if (!workspace) {
       return core.setFailed(`Workspace ${inputs.workspace} not found.`);
@@ -42,7 +42,6 @@ import { Project } from './project.ts';
     } else {
       core.info(`Workspace ${inputs.workspace} not affected`);
     }
-
   } catch (error) {
     core.setFailed(error.message);
   }
