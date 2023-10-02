@@ -1,4 +1,4 @@
-import * as core from '@actions/core';
+import core from '@actions/core';
 import { qstr } from '@jujulego/quick-tag';
 import { minimatch } from 'minimatch';
 import path from 'node:path';

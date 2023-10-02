@@ -1,7 +1,7 @@
 import { fs, vol } from 'memfs';
 import path from 'node:path';
 import { Package } from 'normalize-package-data';
-import { describe, vi } from 'vitest';
+import { vi } from 'vitest';
 
 import { git } from '@/src/git.js';
 import { Project } from '@/src/project/project.js';
@@ -63,11 +63,6 @@ beforeEach(() => {
     'wks-c': {
       'package.json': JSON.stringify(wksC.manifest),
     },
-    'package.json': JSON.stringify({
-      name: 'project',
-      private: true,
-      workspace: ['wks-*'],
-    }),
   }, '/project');
 });
 

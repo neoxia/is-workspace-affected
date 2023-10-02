@@ -1,5 +1,5 @@
-import * as core from '@actions/core';
-import * as glob from '@actions/glob';
+import core from '@actions/core';
+import glob from '@actions/glob';
 import { Lock } from '@jujulego/utils';
 import normalize, { Package } from 'normalize-package-data';
 import fs from 'node:fs/promises';
