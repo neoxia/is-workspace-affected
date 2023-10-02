@@ -42,7 +42,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build
-        run: yarn build
+        run: yarn build:prod
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v3
@@ -53,8 +53,7 @@ jobs:
       - name: Check build
         run: |
           if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
-            echo "Detected uncommitted changes after build. See status below:"
-            git diff
+            echo "::warn::Detected uncommitted changes after build. Please run `yarn build:prod` and commit the changes"
             exit 1
           fi
 
