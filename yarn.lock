@@ -599,12 +599,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/utils@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@jujulego/utils@npm:2.0.1"
+"@jujulego/utils@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@jujulego/utils@npm:2.0.2"
   dependencies:
     "@jujulego/event-tree": ^4.1.0
-  checksum: 6aa5986e933dff12d8834a57a65480feb4654db90ad30496d902b7f9305a387b2ab4f1debda5116f88dc728a9e0a1cf672ff39d74134b951366cb7833f3233cb
+  checksum: c360e3a6191f466dd313c19644c52aed20a85404b088385e836dfae3d8b9dbf87e0e6149e9fd5abd3c65f2511f9e621c78401c02d249c7ac5cefeaf2942df947
   languageName: node
   linkType: hard
 
@@ -3007,7 +3007,7 @@ __metadata:
     "@actions/core": ^1.10.1
     "@actions/glob": ^0.4.0
     "@jujulego/quick-tag": ^0.3.2
-    "@jujulego/utils": ^2.0.1
+    "@jujulego/utils": ^2.0.2
     "@microsoft/eslint-formatter-sarif": 3.0.0
     "@rollup/plugin-swc": 0.2.0
     "@swc/core": 1.3.91
