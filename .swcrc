@@ -1,0 +1,14 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript"
+    }
+  },
+  "module": {
+    "type": "es6"
+  },
+  "env": {
+    "targets": "node 20"
+  },
+  "sourceMaps": true
+}
