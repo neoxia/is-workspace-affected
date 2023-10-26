@@ -19,7 +19,7 @@ const commonConfig = {
     clean: true,
   },
   optimization: {
-    moduleIds: 'deterministic',
+    moduleIds: 'natural',
   },
   module: {
     rules: [
