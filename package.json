@@ -54,5 +54,5 @@
     "webpack-cli": "5.1.4",
     "webpack-merge": "5.9.0"
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "yarn@4.0.0"
 }
