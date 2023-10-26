@@ -73,7 +73,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' }}
         run: |
           if [ "$(git diff --ignore-space-at-eol dist/bundle.cjs | wc -l)" -gt "0" ]; then
-            echo "::error file=dist/bundle.js::Detected uncommitted changes after build. Please run `yarn build:prod` and commit the changes."
+            echo "::error file=dist/bundle.js::Detected uncommitted changes after build. Please run 'yarn build:prod' and commit the changes."
             exit 1
           fi
 
