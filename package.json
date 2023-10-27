@@ -42,7 +42,7 @@
     "browserslist": "4.22.1",
     "eslint": "8.50.0",
     "eslint-plugin-vitest": "0.3.8",
-    "fork-ts-checker-webpack-plugin": "8.0.0",
+    "fork-ts-checker-webpack-plugin": "9.0.0",
     "memfs": "4.5.0",
     "swc-loader": "0.2.3",
     "ts-node": "10.9.1",

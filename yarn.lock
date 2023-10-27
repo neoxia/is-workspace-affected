@@ -2345,9 +2345,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fork-ts-checker-webpack-plugin@npm:8.0.0":
-  version: 8.0.0
-  resolution: "fork-ts-checker-webpack-plugin@npm:8.0.0"
+"fork-ts-checker-webpack-plugin@npm:9.0.0":
+  version: 9.0.0
+  resolution: "fork-ts-checker-webpack-plugin@npm:9.0.0"
   dependencies:
     "@babel/code-frame": "npm:^7.16.7"
     chalk: "npm:^4.1.2"
@@ -2364,7 +2364,7 @@ __metadata:
   peerDependencies:
     typescript: ">3.6.0"
     webpack: ^5.11.0
-  checksum: 49be81a780271b0e1f8c230c32ddb54d7e7ca562565b29811a94d5e679607b947850b133c3bb63057a71e67ac717c6c86c6d0390d1ecc885b506ae9158cf9bb5
+  checksum: f76b232cebc009b3087cd971d81697383578af3d293f70dde3148e67d212f4dfd5f1205b843686d7d1977340361b8e2bb7999b69ed1d82b7e16688656a3fca00
   languageName: node
   linkType: hard
 
@@ -2826,7 +2826,7 @@ __metadata:
     browserslist: "npm:4.22.1"
     eslint: "npm:8.50.0"
     eslint-plugin-vitest: "npm:0.3.8"
-    fork-ts-checker-webpack-plugin: "npm:8.0.0"
+    fork-ts-checker-webpack-plugin: "npm:9.0.0"
     memfs: "npm:4.5.0"
     minimatch: "npm:^9.0.3"
     normalize-package-data: "npm:^6.0.0"
