@@ -848,10 +848,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.8.2":
+"@types/node@npm:*":
   version: 20.8.2
   resolution: "@types/node@npm:20.8.2"
   checksum: 61bd39870625d8afcbb4f21d6a0c3a9681f6d508dc6b06f2497e9ad3ec942092a120bcfdbc1757a8e4017308449bc2a9b9865b2b9840b158878a4e8cc0804a3c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:20.8.9":
+  version: 20.8.9
+  resolution: "@types/node@npm:20.8.9"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 71e0023342272e63c47f3fab6082bd6c89d0b0c4262a1c2d0d52458560077f5c28ef5cfe704306eac43fc2e5111bef4e1cdbf08f565650520fad5e54005a8836
   languageName: node
   linkType: hard
 
@@ -2817,7 +2826,7 @@ __metadata:
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@swc/core": "npm:1.3.95"
     "@types/minimatch": "npm:5.1.1"
-    "@types/node": "npm:20.8.2"
+    "@types/node": "npm:20.8.9"
     "@types/normalize-package-data": "npm:2.4.2"
     "@types/semver": "npm:7.5.3"
     "@typescript-eslint/eslint-plugin": "npm:6.7.4"
@@ -4446,6 +4455,13 @@ __metadata:
   version: 1.3.1
   resolution: "ufo@npm:1.3.1"
   checksum: cc10314a5065c50995167a2c4bbe04c3929f6a750f09e5a805cc647e2a16ea5556360b3c22a4cb03fe32cb18877d37c5f833a44930633916a916fac41be25d14
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 0097779d94bc0fd26f0418b3a05472410408877279141ded2bd449167be1aed7ea5b76f756562cb3586a07f251b90799bab22d9019ceba49c037c76445f7cddd
   languageName: node
   linkType: hard
 
