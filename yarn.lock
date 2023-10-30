@@ -2854,7 +2854,7 @@ __metadata:
     vite: "npm:5.0.0-beta.12"
     vite-tsconfig-paths: "npm:4.2.1"
     vitest: "npm:0.34.6"
-    webpack: "npm:5.88.2"
+    webpack: "npm:5.89.0"
     webpack-cli: "npm:5.1.4"
     webpack-merge: "npm:5.9.0"
   languageName: unknown
@@ -4762,9 +4762,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.88.2":
-  version: 5.88.2
-  resolution: "webpack@npm:5.88.2"
+"webpack@npm:5.89.0":
+  version: 5.89.0
+  resolution: "webpack@npm:5.89.0"
   dependencies:
     "@types/eslint-scope": "npm:^3.7.3"
     "@types/estree": "npm:^1.0.0"
@@ -4795,7 +4795,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 2b26158f091df1d97b85ed8b9c374c673ee91de41e13579a3d5abb76f48fda0e2fe592541e58a96e2630d5bce18d885ce605f6ae767d7e0bc2b5ce3b700a51f0
+  checksum: ee19b070279c9bc3bf21eeaac3ea08e6583c1b8da334e595b3c9badedbd7f9fad071b9f785076081af661ef247bb72441e86e8b903bf253ae9300007a048ea6e
   languageName: node
   linkType: hard
 
