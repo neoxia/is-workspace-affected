@@ -2840,7 +2840,7 @@ __metadata:
     eslint: "npm:8.50.0"
     eslint-plugin-vitest: "npm:0.3.8"
     fork-ts-checker-webpack-plugin: "npm:9.0.2"
-    memfs: "npm:4.5.0"
+    memfs: "npm:4.6.0"
     minimatch: "npm:^9.0.3"
     normalize-package-data: "npm:^6.0.0"
     semver: "npm:^7.5.4"
@@ -3177,15 +3177,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"memfs@npm:4.5.0":
-  version: 4.5.0
-  resolution: "memfs@npm:4.5.0"
+"memfs@npm:4.6.0":
+  version: 4.6.0
+  resolution: "memfs@npm:4.6.0"
   dependencies:
     json-joy: "npm:^9.2.0"
     thingies: "npm:^1.11.1"
   peerDependencies:
     tslib: 2
-  checksum: 244dc727e15f6183a35f2ec96d587f087686a630789913e37872305aa246f0182f90b867bacb37e353d147e8a12ce16c55f9555addf60a8f4c7238846be3f18d
+  checksum: 370a70ff9156aaf5a75bfeca265d66b08795bf736c5ad0c1a597e489864d4f031f424b320ef3f331a99f0fa36ad90688ab28859b7c647ee3b473d4ee1fdd8d95
   languageName: node
   linkType: hard
 
