@@ -6,6 +6,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/*"
 
   # Maintain dependencies for npm/yarn
   - package-ecosystem: "npm"
