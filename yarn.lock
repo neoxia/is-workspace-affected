@@ -2848,7 +2848,7 @@ __metadata:
     swc-loader: "npm:0.2.3"
     ts-node: "npm:10.9.1"
     typescript: "npm:5.2.2"
-    vite: "npm:5.0.0-beta.12"
+    vite: "npm:5.0.0-beta.13"
     vite-tsconfig-paths: "npm:4.2.1"
     vitest: "npm:0.34.6"
     webpack: "npm:5.89.0"
@@ -4600,7 +4600,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.0.0-beta.12, vite@npm:^3.0.0 || ^4.0.0 || ^5.0.0-0, vite@npm:^3.1.0 || ^4.0.0 || ^5.0.0-0":
+"vite@npm:5.0.0-beta.13":
+  version: 5.0.0-beta.13
+  resolution: "vite@npm:5.0.0-beta.13"
+  dependencies:
+    esbuild: "npm:^0.19.3"
+    fsevents: "npm:~2.3.3"
+    postcss: "npm:^8.4.31"
+    rollup: "npm:^4.1.4"
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: a325df13ceba5634e6728ac9b6c632c9b835f27780bcb774c5443c742610154db6ddf22fa61629d9195c853af2cb153f7fb26b0090fb33a6c341773135e07621
+  languageName: node
+  linkType: hard
+
+"vite@npm:^3.0.0 || ^4.0.0 || ^5.0.0-0, vite@npm:^3.1.0 || ^4.0.0 || ^5.0.0-0":
   version: 5.0.0-beta.12
   resolution: "vite@npm:5.0.0-beta.12"
   dependencies:
