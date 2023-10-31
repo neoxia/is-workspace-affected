@@ -450,13 +450,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/quick-tag@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "@jujulego/quick-tag@npm:0.3.2"
+"@jujulego/quick-tag@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@jujulego/quick-tag@npm:0.3.3"
   dependenciesMeta:
     vitest@0.34.6:
       unplugged: true
-  checksum: 63d0c6497ae12c9394965a288525d20b6065fcef2f371923b29fcadac2c92181eaa8361dbcf9501ea58f47361a01cefca932cd8dca3049424a81bd7b0f5a493e
+  checksum: ec8b9f7e46e524412babfc732f960f9ca651f6d256f9deebc5f5129cb70e36d479cbe81edd83baa95f785238592ab74cbd35c305042b8332b917f14286bb2acc
   languageName: node
   linkType: hard
 
@@ -2958,7 +2958,7 @@ __metadata:
   dependencies:
     "@actions/core": "npm:^1.10.1"
     "@actions/glob": "npm:^0.4.0"
-    "@jujulego/quick-tag": "npm:^0.3.2"
+    "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/utils": "npm:^2.0.2"
     "@jujulego/vite-plugin-swc": "npm:1.1.0"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
