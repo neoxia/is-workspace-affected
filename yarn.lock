@@ -2982,7 +2982,7 @@ __metadata:
     swc-loader: "npm:0.2.3"
     ts-node: "npm:10.9.1"
     typescript: "npm:5.2.2"
-    vite: "npm:5.0.0-beta.13"
+    vite: "npm:5.0.0-beta.14"
     vite-tsconfig-paths: "npm:4.2.1"
     vitest: "npm:0.34.6"
     webpack: "npm:5.89.0"
@@ -4734,9 +4734,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.0.0-beta.13":
-  version: 5.0.0-beta.13
-  resolution: "vite@npm:5.0.0-beta.13"
+"vite@npm:5.0.0-beta.14":
+  version: 5.0.0-beta.14
+  resolution: "vite@npm:5.0.0-beta.14"
   dependencies:
     esbuild: "npm:^0.19.3"
     fsevents: "npm:~2.3.3"
@@ -4770,7 +4770,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: a325df13ceba5634e6728ac9b6c632c9b835f27780bcb774c5443c742610154db6ddf22fa61629d9195c853af2cb153f7fb26b0090fb33a6c341773135e07621
+  checksum: 11bc50fa7661a5d409169432c72ecfc1c6fc67c9791afbff4dbf8ed1aabd4e12413778bcbba8362744754807f82072aa705e80643287d28842d5151340039596
   languageName: node
   linkType: hard
 
