@@ -486,12 +486,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/vite-plugin-swc@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@jujulego/vite-plugin-swc@npm:1.1.0"
+"@jujulego/vite-plugin-swc@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@jujulego/vite-plugin-swc@npm:1.1.1"
   peerDependencies:
     "@swc/core": ^1.3.0
-  checksum: b59c2b1433485a129f7bb5914e383f5cd9d21fc20aa77c209ec024864c58651486b18612c627753449a582a7bb027e7d3296241a925e45845983d64b2f4b862e
+  checksum: 17cee66ac3e12cd3892f1812abd3bda0f8abce394efe8884a4b4e327e0a21ddf1327169e37d57e2110a33b7173fdbfff85519c9b12ed3a612d70bc3c48da0f09
   languageName: node
   linkType: hard
 
@@ -3018,7 +3018,7 @@ __metadata:
     "@actions/glob": "npm:^0.4.0"
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/utils": "npm:^2.1.1"
-    "@jujulego/vite-plugin-swc": "npm:1.1.0"
+    "@jujulego/vite-plugin-swc": "npm:1.1.1"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@swc/core": "npm:1.3.96"
     "@types/minimatch": "npm:5.1.1"
