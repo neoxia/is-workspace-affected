@@ -1,5 +1,5 @@
 # is-workspace-affected
-[![Build](https://github.com/julien-capellari/is-workspace-affected/actions/workflows/build.yml/badge.svg)](https://github.com/julien-capellari/is-workspace-affected/actions/workflows/build.yml)
+[![Javascript](https://github.com/neoxia/is-workspace-affected/actions/workflows/javascript.yml/badge.svg)](https://github.com/neoxia/is-workspace-affected/actions/workflows/javascript.yml)
 ![License](https://img.shields.io/github/license/julien-capellari/is-workspace-affected)
 ![Version](https://img.shields.io/github/v/release/julien-capellari/is-workspace-affected)
 
@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - uses: neoxia/is-workspace-affected@v2.0
+      - uses: neoxia/is-workspace-affected@v2.1.0
         id: affected
         with:
           workspace: front
