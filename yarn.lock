@@ -457,16 +457,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/event-tree@npm:^4.1.0":
-  version: 4.1.1
-  resolution: "@jujulego/event-tree@npm:4.1.1"
-  dependenciesMeta:
-    vitest@0.34.4:
-      unplugged: true
-  checksum: 4d292c15c17b207e95223cd9ccf7973e218e4b2029d4a8dde35d7ae0e7cb4f23077ed783729f1c297ecb6ebf9f4262096ea55d9833842bfadbac37b4a6b4540f
-  languageName: node
-  linkType: hard
-
 "@jujulego/quick-tag@npm:^0.3.3":
   version: 0.3.3
   resolution: "@jujulego/quick-tag@npm:0.3.3"
@@ -477,12 +467,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/utils@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "@jujulego/utils@npm:2.1.1"
+"@jujulego/utils@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@jujulego/utils@npm:3.0.4"
   dependencies:
-    "@jujulego/event-tree": "npm:^4.1.0"
-  checksum: cf408db0d8825a632c34ae3e8c18044556372a29111d29db17165cc4c4f4b70a582edef31f82f3033729da62c86ca7307fef83663e3cf95b7fe3ceff0ef32a8b
+    "@swc/helpers": "npm:^0.5.3"
+    kyrielle: "npm:^0.6.0"
+  checksum: e9ae390169e6bd5ca077d35d9f616120182e68ad2ba8045995fdc378b9d42a833263e50e69217ecbf641a09cc4587cff77164a3e88f5516109f49bb6b5db7149
   languageName: node
   linkType: hard
 
@@ -865,6 +856,15 @@ __metadata:
   version: 0.1.2
   resolution: "@swc/counter@npm:0.1.2"
   checksum: 18be012107d4ba1f79776c48d83391ca2159103d7d31a59ff52fcc8024db51b71c5f46714a9fb73981739bc8a38dc6f385a046b71cc08f6043f3c47f5c409eab
+  languageName: node
+  linkType: hard
+
+"@swc/helpers@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "@swc/helpers@npm:0.5.3"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 7003b9dafad38e27a4474a3dcf78d2aee85ce4bb7ee171ecc2d5b533768fb4f8fc9dbd6a1c3a9df5f8001e61ff416b93681e0a7dcbdc0df109b3e09c50cd4615
   languageName: node
   linkType: hard
 
@@ -2858,6 +2858,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immer@npm:^10.0.3":
+  version: 10.0.3
+  resolution: "immer@npm:10.0.3"
+  checksum: 282a4f8479a40f7d12b2b3243c095e3e892bf99058e2ffcdd6b8e9fd143e6a90f2717ab9b6c8b97c927ffb8054465c8f647056f41660dbfd672e240cf1063503
+  languageName: node
+  linkType: hard
+
 "import-fresh@npm:^3.2.1, import-fresh@npm:^3.3.0":
   version: 3.3.0
   resolution: "import-fresh@npm:3.3.0"
@@ -3017,7 +3024,7 @@ __metadata:
     "@actions/core": "npm:^1.10.1"
     "@actions/glob": "npm:^0.4.0"
     "@jujulego/quick-tag": "npm:^0.3.3"
-    "@jujulego/utils": "npm:^2.1.1"
+    "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.1.1"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@swc/core": "npm:1.3.96"
@@ -3222,6 +3229,18 @@ __metadata:
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
   checksum: 61cdff9623dabf3568b6445e93e31376bee1cdb93f8ba7033d86022c2a9b1791a1d9510e026e6465ebd701a6dd2f7b0808483ad8838341ac52f003f512e0b4c4
+  languageName: node
+  linkType: hard
+
+"kyrielle@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "kyrielle@npm:0.6.0"
+  dependencies:
+    immer: "npm:^10.0.3"
+  dependenciesMeta:
+    vitest@0.34.6:
+      unplugged: true
+  checksum: f2c414fbf1c9ec5896713cfc796d037a4db0dd086fc82e48c9116ee2d04df06fba99ec3b2ad5ba8cbebee55de25752db8dff7185728c047011d74b29a3b672b2
   languageName: node
   linkType: hard
 
@@ -4644,6 +4663,13 @@ __metadata:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: 69ae09c49eea644bc5ebe1bca4fa4cc2c82b7b3e02f43b84bd891504edf66dbc6b2ec0eef31a957042de2269139e4acff911e6d186a258fb14069cd7f6febce2
+  languageName: node
+  linkType: hard
+
+"tslib@npm:^2.4.0":
+  version: 2.6.2
+  resolution: "tslib@npm:2.6.2"
+  checksum: e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb
   languageName: node
   linkType: hard
 
