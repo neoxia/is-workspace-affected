@@ -93,11 +93,8 @@ jobs:
       - name: Install
         run: yarn install --immutable
 
-      - name: Type check tests
-        run: yarn test:types --pass-with-no-tests
-
       - name: Run tests
-        run: yarn test --coverage
+        run: yarn test --coverage --typecheck
 
       - name: Upload coverage
         uses: actions/upload-artifact@v4
