@@ -40,7 +40,7 @@
     "@vitest/coverage-v8": "1.0.4",
     "browserslist": "4.22.2",
     "eslint": "8.55.0",
-    "eslint-plugin-vitest": "0.3.10",
+    "eslint-plugin-vitest": "0.3.19",
     "fork-ts-checker-webpack-plugin": "9.0.2",
     "memfs": "4.6.0",
     "swc-loader": "0.2.3",
