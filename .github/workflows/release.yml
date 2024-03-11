@@ -21,7 +21,7 @@ jobs:
           echo version=`echo $tag | cut -d _ -f 2` >> $GITHUB_OUTPUT
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: ${{ steps.info.outputs.version }}
           draft: true
